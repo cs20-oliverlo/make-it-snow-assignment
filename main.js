@@ -8,16 +8,17 @@ cnv.height = 480;
 let numOfFlakes = randomInt(5, 11);
 let snowflake = [];
 for (let i = 0; i < numOfFlakes; i++) {
-  snowflake.push(
-    {
-    x: randomInt(0, 720),
-    y: randomInt(0, 480),
-    r: randomInt(2, 5),
-    xSpeed: randomDec(-10, 10),
-    ySpeed: randomDec(5, 8)
-    }
-  )
+  newFlake();
 }
+
+function checkFlakes() {
+  if (snowflake.length < numOfFlakes) {
+    newFlake();
+  } else if (snowflake.length > numOfFlakes) {
+    snowflake.pop();
+  }
+}
+
 
 requestAnimationFrame(drawAnimation);
 // Drawing stuff
@@ -40,6 +41,8 @@ function drawAnimation() {
       snowflake[i].y = 0;
     }
   }
+
+  checkFlakes();
 
   // Request Animation Frame
   requestAnimationFrame(drawAnimation);
@@ -74,4 +77,17 @@ function keydownHandler(event) {
     numOfFlakes++;
     console.log(numOfFlakes);
   }
+}
+
+// Helper Function
+function newFlake() {
+  snowflake.push(
+    {
+    x: randomInt(0, 720),
+    y: randomInt(0, 480),
+    r: randomInt(2, 5),
+    xSpeed: randomDec(-10, 10),
+    ySpeed: randomDec(5, 8)
+    }
+  )
 }
