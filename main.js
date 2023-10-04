@@ -52,10 +52,10 @@ function drawAnimation() {
     // Teleport flakies!
     if (snowflake[i].x < -50 || snowflake[i].x > cnv.width + 50 || snowflake[i].y > cnv.height + 6) {
       snowflake[i].x = randomDec(0,720);
-      snowflake[i].y = 0;
-    } else if (snowflake[i].y < 0) {
+      snowflake[i].y = -20;
+    } else if (snowflake[i].y < -25) {
       snowflake[i].x = randomDec(0,720);
-      snowflake[i].ySpeed = 7;
+      snowflake[i].y = -20;
     }
 
     // Flutteryness (adds some spice)
